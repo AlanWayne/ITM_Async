@@ -26,7 +26,7 @@ async def calculate(value: int) -> list[int]:
     return return_value
 
 
-async def int_div(value: int) -> None:
+async def int_div(value: int):
     printc(f"\nValue: {value}")
 
     try:
@@ -41,6 +41,8 @@ async def int_div(value: int) -> None:
             printc(f"{answer}\n", color="GREEN")
         else:
             printc(f"The number {value} is prime.\n", color="YELLOW")
+    
+        return answer
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ async def fetch(semaphore: asyncio.Semaphore, url: str):
                 else:
                     print(f'\033[91m{response.headers["Date"]}\033[0m')
 
-                await asyncio.sleep(1)
+                return response.status
 
 
 async def main():
