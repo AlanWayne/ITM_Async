@@ -15,13 +15,14 @@ async def fetch(semaphore: asyncio.Semaphore, url: str):
                     file.write(
                         f'status: {response.status} = {response.headers["Date"]}\n'
                     )
+            
 
 
 async def main(request_total: int = 1, request_limit: int = 1, url: str = ""):
     clear_log()
     semaphore = asyncio.Semaphore(request_limit)
     tasks = []
-
+    
     for i in range(request_total):
         tasks.append(fetch(url=url, semaphore=semaphore))
 
