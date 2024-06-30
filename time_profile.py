@@ -21,7 +21,7 @@ async def test_time_task_1(value: int = 1_000_000):
     sys.stdout = sys.__stdout__
     profiler.disable()
 
-    pstats.Stats(profiler).strip_dirs().sort_stats("time").print_stats()
+    pstats.Stats(profiler).strip_dirs().sort_stats("time").print_stats(10)
 
 
 async def test_time_task_2(value: int = 10):
@@ -66,7 +66,11 @@ async def test_time_task_4(value: int = 10):
     profiler.enable()
     sys.stdout = open(os.devnull, "w")
 
-    await send(request_total=request_total, request_limit=request_limit, url=url)
+    await send(
+        request_total=request_total,
+        request_limit=request_limit,
+        url=url,
+    )
 
     sys.stdout = sys.__stdout__
     profiler.disable()
@@ -80,12 +84,20 @@ if __name__ == "__main__":
     print("\n\033[91m ======== [START] ======== \033[0m\n")
 
     if arg1 == "1":
-        asyncio.run(test_time_task_1(sys.argv[2] if len(sys.argv) > 2 else 1_000_000))
+        asyncio.run(
+            test_time_task_1(sys.argv[2] if len(sys.argv) > 2 else 1_000_000),
+        )
     elif arg1 == "2":
-        asyncio.run(test_time_task_2(sys.argv[2] if len(sys.argv) > 2 else 10))
+        asyncio.run(
+            test_time_task_2(sys.argv[2] if len(sys.argv) > 2 else 10),
+        )
     elif arg1 == "3":
-        asyncio.run(test_time_task_3(sys.argv[2] if len(sys.argv) > 2 else 10))
+        asyncio.run(
+            test_time_task_3(sys.argv[2] if len(sys.argv) > 2 else 10),
+        )
     elif arg1 == "4":
-        asyncio.run(test_time_task_4(sys.argv[2] if len(sys.argv) > 2 else 10))
+        asyncio.run(
+            test_time_task_4(sys.argv[2] if len(sys.argv) > 2 else 10),
+        )
     else:
         print("Usage: python time_profile.py [index] [value:optional]")

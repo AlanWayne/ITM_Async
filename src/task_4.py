@@ -2,6 +2,7 @@ import aiohttp
 import asyncio
 from os import makedirs
 
+
 def clear_log():
     with open("log/task_4.log", "w") as file:
         file.write("")
@@ -11,10 +12,11 @@ async def fetch(semaphore: asyncio.Semaphore, url: str):
     async with semaphore:
         async with aiohttp.ClientSession() as session:
             async with session.request(method="GET", url=url) as response:
-                
+
                 with open("log/task_4.log", "a") as file:
                     file.write(
-                        f'status: {response.status} = {response.headers["Date"]}\n'
+                        f'status: {response.status} =
+                            {response.headers["Date"]}\n'
                     )
                     return response.status
 

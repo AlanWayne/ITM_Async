@@ -55,7 +55,11 @@ async def test_mem_task_4(value: int = 10) -> None:
     request_limit = request_total // 3
     url = "https://example.com/"
 
-    await send(request_total=request_total, request_limit=request_limit, url=url)
+    await send(
+        request_total=request_total,
+        request_limit=request_limit,
+        url=url,
+    )
 
 
 if __name__ == "__main__":
